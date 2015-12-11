@@ -1,0 +1,20 @@
+{
+  "manifest_version": 2,
+
+  "name": "Quick Quotes",
+  "description": "Select and save quotes from the internet as well as a link to them.",
+  "version": "1.0",
+
+  "icons": {
+    "16": "icon.png"
+  },
+
+  "background": {
+    "scripts": ["background.js"]
+  },
+
+  "permissions": [
+    "contextMenus",
+    "tabs"
+  ]
+}
