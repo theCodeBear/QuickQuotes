@@ -1,26 +1,35 @@
 var list = document.getElementById('quotesList');
-var li;
-var verticalPositios = [];
+var li, links, quote;
 chrome.storage.sync.get(null, function(items) {
   var count = 0;
   for (var item in items) {
     li = createListItem(item, items[item], count++);
     list.appendChild(li);
-    verticalPositions.push(items[item].yPos);
   }
   document.body.appendChild(list);
+  links = list.getElementsByClassName('link');
+  makeEventListeners(links);
 });
 
-document.body.addEventListener('click', function(event) {
-  // here i route to the page and then open it at the verical position in the data
-  // which is verticalPositions[event.path[0].getAttribute('id')]
-});
+
+function makeEventListeners(links) {
+  for (var i=0; i<links.length; i++) {
+    links[i].addEventListener('click', function(event) {
+      chrome.tabs.create({url: event.path[0].innerText}, function(tab) {
+      quote = event.path[1].childNodes[2].innerText;
+        chrome.tabs.executeScript(tab.id, {file: "findQuote.js"}, function() {
+          chrome.tabs.sendMessage(tab.id, event.path[1].childNodes[2].innerText);
+        });
+      });
+    });
+  }
+}
 
 
 function createListItem(date, info, count) {
   var li = document.createElement('li');
   createDivForListItem(date, li);
-  createAnchoredDiv(info.url, li, count);
+  createAnchoredDiv(info.url, li);
   createDivForListItem(info.text, li);
   return li;
 }
@@ -31,12 +40,8 @@ function createDivForListItem(text, li) {
   li.appendChild(div);
 }
 
-function createAnchoredDiv(text, li, count) {
+function createAnchoredDiv(text, li) {
   var div = document.createElement('div');
-  // var a = document.createElement('a');
-  // a.setAttribute('href', text);
-  // a.setAttribute('id', count);
-  // a.innerText = text;
   div.classList.add('link');
   div.innerText = text;
   li.appendChild(div);

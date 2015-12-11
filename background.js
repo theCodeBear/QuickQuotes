@@ -4,18 +4,13 @@ chrome.contextMenus.create({
   'contexts': ['selection']
 });
 
-var mouseY;
-document.body.addEventListener('click', function(event) {
-  mouseY = event.pageY;
-});
-
+// chrome.storage.sync.clear();
 chrome.contextMenus.onClicked.addListener(function(info, tab) {
-  var now = new Date();
-  chrome.storage.sync.set({[now]: {
-    url: info.pageUrl,
-    text: info.selectionText,
-    yPos: mouseY
-  }});
+    var now = new Date();
+    chrome.storage.sync.set({[now]: {
+      url: info.pageUrl,
+      text: info.selectionText
+    }});
 });
 
 chrome.browserAction.onClicked.addListener(function() {
