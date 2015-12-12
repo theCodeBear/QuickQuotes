@@ -1,0 +1,51 @@
+header {
+  text-align: center;
+  font-size: 4em;
+  font-weight: 200;
+}
+
+ul {
+  list-style-type: none;
+  padding-left:0;
+  width: 70%;
+  margin: 0 auto;
+}
+
+li {
+  padding: 20px;
+  margin-top: 15px;
+  box-shadow: 0 1px 3px 0 #BBB;
+  background-color: #EEE;
+}
+
+.date {
+  display: inline;
+  width: 45%;
+  font-size: 1.4em;
+  white-space: nowrap;
+  overflow-x: hidden;
+  text-overflow: ellipsis;
+}
+
+.link {
+  cursor: pointer;
+  float: right;
+  display: inline;
+  width: 45%;
+  white-space: nowrap;
+  overflow-x: hidden;
+  text-overflow: ellipsis;
+  font-style: italic;
+  font-size: 1.2em;
+  -webkit-transition: font-size 0.5s;
+}
+
+.link:hover {
+  font-size: 1.6em;
+}
+
+.quote {
+  font-size: 2em;
+  padding: 20px;
+  text-align: center
+}
