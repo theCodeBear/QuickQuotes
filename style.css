@@ -49,3 +49,24 @@ li {
   padding: 20px;
   text-align: center
 }
+
+.delete {
+  outline: none;
+  font-size: 2em;
+  position: relative;
+  float: right;
+  left: 11px;
+  bottom: 21px;
+  width: 35px;
+  height: 35px;
+  background-color: transparent;
+  color: red;
+  border: 2px solid red;
+  border-radius: 50%;
+}
+
+.delete:hover {
+  background-color: red;
+  color: white;
+  cursor: pointer;
+}

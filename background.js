@@ -4,7 +4,6 @@ chrome.contextMenus.create({
   'contexts': ['selection']
 });
 
-// chrome.storage.sync.clear();
 chrome.contextMenus.onClicked.addListener(function(info, tab) {
     var now = new Date();
     chrome.storage.sync.set({[now]: {

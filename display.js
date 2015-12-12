@@ -5,11 +5,10 @@ var options = {
   day: 'numeric', hour: '2-digit', minute: '2-digit'
 };
 chrome.storage.sync.get(null, function(items) {
-  var count = 0;
   for (var item in items) {
     var date = new Date(item);
     date = date.toLocaleTimeString('en-us', options);
-    li = createListItem(date, items[item], count++);
+    li = createListItem(date, items[item], item);
     list.appendChild(li);
   }
   var i = list.childNodes.length;
@@ -34,11 +33,12 @@ function makeEventListeners(links) {
 }
 
 
-function createListItem(date, info, count) {
+function createListItem(date, info, key) {
   var li = document.createElement('li');
   createDivForListItem(date, li, 'date');
   createDivForListItem(info.url, li, 'link');
   createDivForListItem(info.text, li, 'quote');
+  createDeleteButton(li, key);
   return li;
 }
 
@@ -47,4 +47,17 @@ function createDivForListItem(text, li, className) {
   div.classList.add(className);
   div.innerText = text;
   li.appendChild(div);
+}
+
+function createDeleteButton(li, key) {
+  var button = document.createElement('button');
+  button.classList.add('delete');
+  button.innerText = 'X';
+  button.addEventListener('click', function() {
+    chrome.storage.sync.remove(key, function() {
+      document.querySelector('ul').removeChild(li);
+    });
+  });
+  li.appendChild(button);
+  return li;
 }
