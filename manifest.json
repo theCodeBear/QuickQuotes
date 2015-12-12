@@ -12,7 +12,7 @@
   },
 
   "browser_action": {
-    "default_popup": "icon16.png"
+    "default_icon": "icon16.png"
   },
 
   "content_scripts": [

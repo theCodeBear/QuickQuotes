@@ -60,8 +60,8 @@ li {
   width: 35px;
   height: 35px;
   background-color: transparent;
-  color: red;
-  border: 2px solid red;
+  color: black;
+  border: 2px solid black;
   border-radius: 50%;
 }
 
@@ -69,6 +69,7 @@ li {
   background-color: red;
   color: white;
   cursor: pointer;
+  border-color: red;
 }
 
 .empty {
